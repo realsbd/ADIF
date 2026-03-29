@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── CSS Custom Properties (needed by next/font variable injection) ── */
+:root {
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans:  'DM Sans', system-ui, sans-serif;
+}
+
+/* ── GSAP initial states — queried by class name, must stay as CSS ── */
+.hero-eyebrow,
+.hero-title,
+.hero-subtitle,
+.hero-actions {
+  opacity: 0;
+}
+.hero-eyebrow  { transform: translateY(20px); }
+.hero-title    { transform: translateY(30px); }
+.hero-subtitle { transform: translateY(20px); }
+
+@keyframes scrollLeftInfinite {
+  0% { background-position: 0 50%; }
+  100% { background-position: -100% 50%; }
+}
+
+.animate-scroll-left {
+  animation: scrollLeftInfinite 60s linear infinite;
+}
+
+
+/* ── Custom animations ── */
+@keyframes scroll-left {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -1920px 0;
+  }
+}
+
+.animate-scroll-left {
+  animation: scroll-left 30s linear infinite;
+}
+.hero-actions  { transform: translateY(20px); }
+.hero-scroll   { opacity: 0; }
+.nav-logo      { opacity: 0; }
+
+/* Scroll reveal initial states */
+.reveal       { opacity: 0; transform: translateY(40px); }
+.reveal-left  { opacity: 0; transform: translateX(-40px); }
+.reveal-right { opacity: 0; transform: translateX(40px); }
+
+/* ── Utilities ── */
+@layer utilities {
+  .no-scrollbar {
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ── Pseudo-element tricks (require content:'') ── */
+/* Philosophy visual – bottom gradient overlay */
+.philosophy-visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,31,68,0.6) 0%, transparent 50%);
+}
+
+/* CEO photo – gold bottom bar */
+.ceo-photo::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: #c9a96e;
+  z-index: 2;
+}
+
+/* Service card – gold underline that expands on hover */
+.service-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: #c9a96e;
+  transition: width 0.5s ease;
+}
+.service-card:hover::before { width: 100%; }
+
+/* Mobile nav open state – JS toggled */
+.mobile-nav.open { transform: translateX(0); }
