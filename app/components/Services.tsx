@@ -40,11 +40,11 @@ export default function Services() {
         </div>
 
         {/* Cards grid — gap-px on dark background creates subtle divider lines */}
-        <div className="grid grid-cols-2 max-[900px]:grid-cols-1 gap-[2px] bg-black/[0.06]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-[2px] bg-black/[0.06]">
           {services.map(({ num, title, desc }) => (
             <div
               key={num}
-              className="service-card reveal relative bg-white px-11 py-12 overflow-hidden transition-colors duration-300 hover:bg-blue-pale cursor-default"
+              className="service-card relative bg-white px-11 py-12 overflow-hidden transition-colors duration-300 hover:bg-blue-pale cursor-default"
             >
               <div className="font-serif text-[48px] font-light leading-none mb-5 text-black/[0.06] transition-colors duration-300">
                 {num}
