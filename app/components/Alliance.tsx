@@ -1,4 +1,52 @@
+'use client';
+
+import { motion } from "framer-motion"
+
 export default function Alliance() {
+  // Animation variants for the text reveal
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  }
+
+  const letterVariants = {
+    hidden: {
+      opacity: 0,
+      y: 20
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        damping: 12,
+        stiffness: 200
+      }
+    }
+  }
+
+  const lineVariants = {
+    hidden: {
+      width: "0%",
+      left: "50%"
+    },
+    visible: {
+      width: "100%",
+      left: "0%",
+      transition: {
+        delay: 1.5,
+        duration: 0.8,
+        ease: "easeOut"
+      }
+    }
+  }
+
   return (
     <section id="alliance" className="py-[120px] max-[900px]:py-20 bg-blue-deep relative overflow-hidden">
       {/* Huge background watermark text */}
@@ -18,10 +66,103 @@ export default function Alliance() {
             <span className="font-sans text-[11px] tracking-[0.3em] uppercase text-gold mb-4 block">
               Strategic Alliance
             </span>
-            <h2 className="font-serif font-light text-white mb-6" style={{ fontSize: 'clamp(32px,4vw,52px)', lineHeight: 1.15 }}>
-              Powered by<br />
-              <em className="italic text-gold">AIX Investment Group.</em>
-            </h2>
+
+            {/* Animated H2 */}
+            <div className="relative mb-6">
+              <motion.div
+                className="font-serif font-light text-white"
+                style={{ fontSize: 'clamp(32px,4vw,52px)', lineHeight: 1.15 }}
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+              >
+                <motion.span variants={letterVariants}>P</motion.span>
+                <motion.span variants={letterVariants}>o</motion.span>
+                <motion.span variants={letterVariants}>w</motion.span>
+                <motion.span variants={letterVariants}>e</motion.span>
+                <motion.span variants={letterVariants}>r</motion.span>
+                <motion.span variants={letterVariants}>e</motion.span>
+                <motion.span variants={letterVariants}>d</motion.span>
+                <motion.span variants={letterVariants}>&nbsp;</motion.span>
+                <motion.span variants={letterVariants}>b</motion.span>
+                <motion.span variants={letterVariants}>y</motion.span>
+                <motion.span variants={letterVariants}><br /></motion.span>
+                <motion.span variants={letterVariants}>
+                  <em className="italic text-gold">A</em>
+                </motion.span>
+                <motion.span variants={letterVariants}>
+                  <em className="italic text-gold">I</em>
+                </motion.span>
+                <motion.span variants={letterVariants}>
+                  <em className="italic text-gold">X</em>
+                </motion.span>
+                <motion.span variants={letterVariants}>
+                  <em className="italic text-gold">&nbsp;</em>
+                </motion.span>
+                <motion.span variants={letterVariants}>
+                  <em className="italic text-gold">I</em>
+                </motion.span>
+                <motion.span variants={letterVariants}>
+                  <em className="italic text-gold">n</em>
+                </motion.span>
+                <motion.span variants={letterVariants}>
+                  <em className="italic text-gold">v</em>
+                </motion.span>
+                <motion.span variants={letterVariants}>
+                  <em className="italic text-gold">e</em>
+                </motion.span>
+                <motion.span variants={letterVariants}>
+                  <em className="italic text-gold">s</em>
+                </motion.span>
+                <motion.span variants={letterVariants}>
+                  <em className="italic text-gold">t</em>
+                </motion.span>
+                <motion.span variants={letterVariants}>
+                  <em className="italic text-gold">m</em>
+                </motion.span>
+                <motion.span variants={letterVariants}>
+                  <em className="italic text-gold">e</em>
+                </motion.span>
+                <motion.span variants={letterVariants}>
+                  <em className="italic text-gold">n</em>
+                </motion.span>
+                <motion.span variants={letterVariants}>
+                  <em className="italic text-gold">t</em>
+                </motion.span>
+                <motion.span variants={letterVariants}>
+                  <em className="italic text-gold">&nbsp;</em>
+                </motion.span>
+                <motion.span variants={letterVariants}>
+                  <em className="italic text-gold">G</em>
+                </motion.span>
+                <motion.span variants={letterVariants}>
+                  <em className="italic text-gold">r</em>
+                </motion.span>
+                <motion.span variants={letterVariants}>
+                  <em className="italic text-gold">o</em>
+                </motion.span>
+                <motion.span variants={letterVariants}>
+                  <em className="italic text-gold">u</em>
+                </motion.span>
+                <motion.span variants={letterVariants}>
+                  <em className="italic text-gold">p</em>
+                </motion.span>
+                <motion.span variants={letterVariants}>
+                  <em className="italic text-gold">.</em>
+                </motion.span>
+              </motion.div>
+
+              {/* Animated underline */}
+              <motion.div
+                variants={lineVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-gold via-blue-mid to-gold"
+              />
+            </div>
+
             <p className="text-[16px] leading-[1.85] text-white/60 mb-5">
               Our operational excellence is bolstered by our strategic partnership with AIX Investment Group.
               With over a decade of proven financial leadership and a dual-headquarter presence in Dubai and

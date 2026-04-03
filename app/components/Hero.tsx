@@ -14,6 +14,9 @@ export default function Hero() {
   }, []);
 
   useEffect(() => {
+    let touchStartY = 0;
+    let isScrolling = false;
+
     const handleWheel = (e: Event) => {
       const wheelEvent = e as WheelEvent;
       if (mediaFullyExpanded && wheelEvent.deltaY < 0 && window.scrollY <= 5) {
@@ -35,11 +38,42 @@ export default function Hero() {
     };
 
     const handleTouchStart = (e: Event) => {
-      // Touch handling can be added if needed
+      const touchEvent = e as TouchEvent;
+      touchStartY = touchEvent.touches[0].clientY;
+      isScrolling = false;
     };
 
     const handleTouchMove = (e: Event) => {
-      // Touch handling can be added if needed
+      const touchEvent = e as TouchEvent;
+      if (!touchEvent.touches[0]) return;
+
+      const touchY = touchEvent.touches[0].clientY;
+      const deltaY = touchStartY - touchY;
+
+      if (mediaFullyExpanded && deltaY < 0 && window.scrollY <= 5) {
+        setMediaFullyExpanded(false);
+        return;
+      } else if (!mediaFullyExpanded) {
+        touchEvent.preventDefault();
+
+        // Only handle if this is a significant vertical scroll
+        if (Math.abs(deltaY) > 10 && !isScrolling) {
+          isScrolling = true;
+        }
+
+        if (isScrolling) {
+          const scrollDelta = deltaY * 0.001;
+          const newProgress = Math.min(
+            Math.max(scrollProgress + scrollDelta, 0),
+            1
+          );
+          setScrollProgress(newProgress);
+
+          if (newProgress >= 1) {
+            setMediaFullyExpanded(true);
+          }
+        }
+      }
     };
 
     const handleScroll = (): void => {
