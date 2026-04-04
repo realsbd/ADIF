@@ -6,6 +6,21 @@
 :root {
   --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-sans:  'DM Sans', system-ui, sans-serif;
+
+  /* ── shadcn design tokens — mapped to ADIF dark theme ── */
+  --background:        10 31 68;          /* blue-deep  */
+  --foreground:        247 248 252;       /* off-white  */
+
+  --card:              15 40 85;          /* slightly lighter deep blue */
+  --card-foreground:   247 248 252;
+
+  --secondary:         201 169 110 / 0.12; /* gold tint for icon bg */
+  --secondary-foreground: 201 169 110;
+
+  --muted-foreground:  255 255 255 / 0.45;
+
+  --border:            255 255 255 / 0.08;
+  --ring:              201 169 110;
 }
 
 /* ── GSAP initial states — queried by class name, must stay as CSS ── */

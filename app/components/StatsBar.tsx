@@ -1,147 +1,135 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+import { FeatureCard } from '@/components/ui/feature-card';
 
+// ── inline SVG icons ─────────────────────────────────────────────────────────
+const UsersIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c9a96e" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+    <circle cx="9" cy="7" r="4"/>
+    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+  </svg>
+);
+
+const TrendingUpIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c9a96e" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+    <polyline points="17 6 23 6 23 12"/>
+  </svg>
+);
+
+const BriefcaseIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c9a96e" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+  </svg>
+);
+
+const ClockIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c9a96e" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10"/>
+    <polyline points="12 6 12 12 16 14"/>
+  </svg>
+);
+
+// ── data ──────────────────────────────────────────────────────────────────────
+const stats = [
+  {
+    icon: <UsersIcon />,
+    title: '2000+ Satisfied Clients',
+    description: 'A growing community of investors who trust ADIF to deliver consistent, world-class results.',
+  },
+  {
+    icon: <TrendingUpIcon />,
+    title: '2.98% Avg Conversion Rate',
+    description: 'Industry-leading performance driven by data-informed strategy and precision execution.',
+  },
+  {
+    icon: <BriefcaseIcon />,
+    title: '150+ Projects Delivered',
+    description: 'From early-stage ventures to landmark developments — delivered on time, on vision.',
+  },
+  {
+    icon: <ClockIcon />,
+    title: '24/7 Support Availability',
+    description: 'Our dedicated team is always on hand, ensuring every client receives uninterrupted guidance.',
+  },
+];
+
+// ── animation variants ────────────────────────────────────────────────────────
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.18 },
+  },
+};
+
+const itemVariants = {
+  hidden: { y: 28, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { duration: 0.55, ease: 'easeOut' },
+  },
+};
+
+// ── component ─────────────────────────────────────────────────────────────────
 export default function StatsBar() {
-  const [isVisible, setIsVisible] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const statsBarRef = useRef<HTMLDivElement>(null);
-
-  const stats = [
-    { num: '2000', suffix: '+', label: 'Satisfied clients' },
-    { num: '2.98', suffix: '%', label: 'Avg conversion rate' },
-    { num: '150', suffix: '+', label: 'Projects delivered' },
-    { num: '24/7', suffix: '', label: 'Support availability' },
-  ];
-
-  useEffect(() => {
-    // Intersection Observer for reveal animation
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    if (statsBarRef.current) {
-      observer.observe(statsBarRef.current);
-    }
-
-    return () => {
-      if (statsBarRef.current) {
-        observer.unobserve(statsBarRef.current);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!statsBarRef.current) return;
-      
-      const rect = statsBarRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      
-      // Calculate progress based on position in viewport
-      const startPoint = windowHeight * 0.7;
-      const progress = Math.min(
-        Math.max((startPoint - rect.top) / startPoint, 0),
-        1
-      );
-      
-      setScrollProgress(progress);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial check
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const ref = useRef<HTMLDivElement>(null);
+  // Trigger animation once when 20 % of the section enters the viewport
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
-    <div 
-      ref={statsBarRef}
-      className="relative px-4"
+    <section
+      ref={ref}
+      className="relative py-20 px-6"
       style={{
-        // Same background as Hero
         background: 'linear-gradient(to bottom, #03112b, #031836 50%, #122a55)',
-        // Floating effect with transform and shadow based on scroll
-        transform: `translateY(${scrollProgress * 20}px) scale(${1 - scrollProgress * 0.05})`,
-        filter: `blur(${scrollProgress * 2}px)`,
       }}
     >
-      {/* Floating container - now with transparent cards inside gradient background */}
-      <div 
-        className="relative max-w-[1200px] mx-auto px-6 md:px-12 rounded-2xl overflow-hidden transition-all duration-700"
-        style={{
-          background: 'transparent',
-          boxShadow: 'none',
-          transform: `translateY(${isVisible ? 0 : 50}px)`,
-          opacity: isVisible ? 1 : 0,
-        }}
+      {/* Section heading */}
+      <motion.div
+        className="text-center mb-14"
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
       >
-        <div className="grid grid-cols-4 max-[900px]:grid-cols-2 gap-4 md:gap-6">
-          {stats.map(({ num, suffix, label }, index) => (
-            <div 
-              key={label} 
-              className="stat-item py-8 px-6 md:px-10 text-center rounded-xl transition-all duration-700 hover:bg-white/5"
-              style={{
-                transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-                opacity: isVisible ? 1 : 0,
-                transitionDelay: `${index * 150}ms`,
-              }}
-            >
-              <div 
-                className="font-serif text-[48px] font-light text-white leading-none mb-2 transition-transform duration-500"
-                style={{
-                  transform: `scale(${isVisible ? 1 : 0.8})`,
-                  textShadow: '0 0 30px rgba(212, 175, 55, 0.3)',
-                }}
-              >
-                {num}
-                {suffix && <span className="text-[28px] text-gold">{suffix}</span>}
-              </div>
-              <div className="text-[11px] tracking-[0.2em] uppercase text-white/45">
-                {label}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+        <p className="text-[11px] tracking-[0.3em] uppercase text-gold mb-3">
+          By the Numbers
+        </p>
+        <h2 className="font-serif font-light text-white text-3xl md:text-4xl">
+          Trusted Performance, Proven Results
+        </h2>
+      </motion.div>
 
-      {/* Floating particles effect */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl">
-        <div 
-          className="absolute w-2 h-2 bg-gold/20 rounded-full transition-all duration-1000"
-          style={{
-            left: '10%',
-            top: '20%',
-            transform: `translateY(${scrollProgress * -50}px)`,
-            opacity: isVisible ? 1 : 0,
-          }}
-        />
-        <div 
-          className="absolute w-1 h-1 bg-gold/30 rounded-full transition-all duration-1000"
-          style={{
-            left: '80%',
-            top: '60%',
-            transform: `translateY(${scrollProgress * -30}px)`,
-            opacity: isVisible ? 1 : 0,
-            transitionDelay: '200ms',
-          }}
-        />
-        <div 
-          className="absolute w-3 h-3 bg-blue-400/10 rounded-full transition-all duration-1000"
-          style={{
-            left: '50%',
-            top: '30%',
-            transform: `translateY(${scrollProgress * -40}px)`,
-            opacity: isVisible ? 1 : 0,
-            transitionDelay: '400ms',
-          }}
-        />
+      {/* Cards grid */}
+      <motion.div
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto"
+        variants={containerVariants}
+        initial="hidden"
+        animate={isInView ? 'visible' : 'hidden'}
+      >
+        {stats.map((stat, index) => (
+          <motion.div key={index} variants={itemVariants}>
+            <FeatureCard
+              icon={stat.icon}
+              title={stat.title}
+              description={stat.description}
+            />
+          </motion.div>
+        ))}
+      </motion.div>
+
+      {/* Subtle floating particles (preserved from original) */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute w-2 h-2 rounded-full bg-gold/20 top-[20%] left-[10%] animate-pulse" />
+        <div className="absolute w-1 h-1 rounded-full bg-gold/30 top-[60%] left-[80%] animate-pulse [animation-delay:400ms]" />
+        <div className="absolute w-3 h-3 rounded-full bg-blue-light/10 top-[30%] left-[50%] animate-pulse [animation-delay:800ms]" />
       </div>
-    </div>
+    </section>
   );
 }

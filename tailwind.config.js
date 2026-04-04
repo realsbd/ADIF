@@ -13,6 +13,14 @@ module.exports = {
         'text-dark': '#0d1b36',
         'text-muted':'#6b7a99',
         'off-white': '#f7f8fc',
+        // shadcn design-token mappings
+        background:         'rgb(var(--background) / <alpha-value>)',
+        foreground:         'rgb(var(--foreground) / <alpha-value>)',
+        card:               { DEFAULT: 'rgb(var(--card) / <alpha-value>)', foreground: 'rgb(var(--card-foreground) / <alpha-value>)' },
+        secondary:          { DEFAULT: 'rgba(var(--secondary))',           foreground: 'rgb(var(--secondary-foreground) / <alpha-value>)' },
+        'muted-foreground': 'rgba(var(--muted-foreground))',
+        border:             'rgba(var(--border))',
+        ring:               'rgb(var(--ring) / <alpha-value>)',
       },
       fontFamily: {
         serif: ['var(--font-serif)', 'Georgia', 'serif'],

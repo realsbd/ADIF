@@ -7,8 +7,6 @@ export default function Hero() {
   const [scrollProgress, setScrollProgress] = useState<number>(0);
   const [mediaFullyExpanded, setMediaFullyExpanded] = useState<boolean>(false);
   const [isMobile, setIsMobile] = useState<boolean>(false);
-  // Parallax: how far the background has scrolled from the top of the page
-  const [bgParallax, setBgParallax] = useState<number>(0);
   const sectionRef = useRef<HTMLDivElement | null>(null);
 
   // Detect mobile / touch device once on mount
@@ -68,30 +66,6 @@ export default function Hero() {
     };
   }, [scrollProgress, mediaFullyExpanded, isMobile]);
 
-  // ─── Background parallax (all devices) ───────────────────────────────────
-  useEffect(() => {
-    const updateParallax = () => {
-      const section = sectionRef.current;
-      if (!section) return;
-
-      // On desktop the page doesn't scroll during the hero animation,
-      // so we derive parallax from scrollProgress instead.
-      if (!isMobile) {
-        setBgParallax(scrollProgress * 60); // 0 → 60 px downward shift
-      } else {
-        // On mobile the page scrolls naturally; use window.scrollY
-        const sectionHeight = section.offsetHeight;
-        const rawProgress = Math.min(window.scrollY / sectionHeight, 1);
-        setBgParallax(rawProgress * 80); // 0 → 80 px downward shift
-      }
-    };
-
-    window.addEventListener('scroll', updateParallax, { passive: true });
-    updateParallax(); // initial call
-
-    return () => window.removeEventListener('scroll', updateParallax);
-  }, [scrollProgress, isMobile]);
-
   // ─── Calculate transform values based on scroll progress ─────────────────
   const textTranslateX = scrollProgress * 15;
   const contentOpacity = 1 - scrollProgress * 1.5;
@@ -104,12 +78,10 @@ export default function Hero() {
     <section
       ref={sectionRef}
       id="hero"
-      className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-blue-deep"
+      className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden"
       style={{
         // Parallax: background-position shifts as the user scrolls
-        backgroundImage: 'url(/bk0006.png)',
         backgroundSize: 'cover',
-        backgroundPosition: `center calc(50% + ${bgParallax}px)`,
         backgroundRepeat: 'no-repeat',
       }}
     >
@@ -239,10 +211,6 @@ export default function Hero() {
           style={{
             opacity: scrollProgress >= 0.9 ? 1 : 0,
             pointerEvents: scrollProgress >= 0.9 ? 'auto' : 'none',
-            backgroundImage: 'url(/bk0006.png)',
-            backgroundSize: 'cover',
-            backgroundPosition: `center calc(50% + ${bgParallax}px)`,
-            backgroundRepeat: 'no-repeat',
           }}
         >
           <div className="absolute inset-0 bg-blue-deep/70" />
