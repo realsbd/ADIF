@@ -33,10 +33,9 @@ export default function Navbar() {
         {/* Logo — single img, filter changes on scroll */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          className="nav-logo h-9 transition-[filter] duration-[400ms]"
-          src="/logo.avif"
+          className="nav-logo h-9 transition-all duration-[400ms]"
+          src={scrolled ? "/logo.avif" : "/logo_adif.png"}
           alt="ADIF GROUP"
-          style={{ filter: scrolled ? 'none' : 'brightness(0) invert(1)' }}
         />
 
         {/* Desktop links */}
