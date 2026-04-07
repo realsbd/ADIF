@@ -23,6 +23,19 @@ export const metadata: Metadata = {
   description:
     "ADIF GROUP is a premier investment and business consultancy firm headquartered in Dubai, UAE. Bridging visionary ambition with exceptional investment opportunities.",
   keywords: "ADIF GROUP, Dubai investment, AIX Investment Group, wealth management, real estate, corporate structuring",
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    apple: [{ url: '/apple-touch-icon.png' }],
+    other: [
+      { rel: 'manifest', url: '/site.webmanifest' },
+      { rel: 'icon', url: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
+      { rel: 'icon', url: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
+    ],
+  },
 };
 
 export default function RootLayout({
