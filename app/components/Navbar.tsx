@@ -37,7 +37,7 @@ export default function Navbar() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             className="nav-logo h-12 transition-all duration-[400ms]"
-            src={light ? '/logo.avif' : '/logo_adif.png'}
+            src={light ? '/logo.avif' : '/logo_adif.PNG'}
             alt="ADIF GROUP"
           />
         </a>

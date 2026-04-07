@@ -20,10 +20,10 @@ export default function Alliance() {
   // ── Parallax ──────────────────────────────────────────────────────────────
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] });
-  const textY       = useTransform(scrollYProgress, [0, 1], [-18, 18]);
-  const photoGridY  = useTransform(scrollYProgress, [0, 1], [-50, 50]);
+  const textY = useTransform(scrollYProgress, [0, 1], [-18, 18]);
+  const photoGridY = useTransform(scrollYProgress, [0, 1], [-50, 50]);
   // Watermark drifts at a different speed for extra depth
-  const watermarkY  = useTransform(scrollYProgress, [0, 1], [-30, 30]);
+  const watermarkY = useTransform(scrollYProgress, [0, 1], [-30, 30]);
 
   return (
     <section
@@ -41,7 +41,7 @@ export default function Alliance() {
       </motion.div>
 
       <div className="max-w-[1200px] mx-auto px-12 max-[900px]:px-6 relative z-[2]">
-        <div className="grid grid-cols-2 max-[900px]:grid-cols-1 gap-20 max-[900px]:gap-12 items-center">
+        <div className="grid grid-cols-1 max-[900px]:grid-cols-1 gap-20 max-[900px]:gap-12 items-center">
 
           {/* Text */}
           <motion.div style={{ y: textY }}>
@@ -116,28 +116,18 @@ export default function Alliance() {
                 <p className="text-[12px] tracking-[0.1em] uppercase text-white/50">Headquarters</p>
                 <strong className="block font-serif text-[18px] font-normal text-white mt-1">Dubai · Zurich</strong>
               </div>
+
             </div>
+              <a
+                href="https://www.aixinvestment.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block py-[14px] px-10 border mt-4 border-gold text-gold text-[12px] tracking-[0.15em] uppercase no-underline rounded-sm transition-all duration-300 hover:bg-gold hover:text-blue-deep"
+              >
+                AIX Investment →
+              </a>
           </motion.div>
 
-          {/* Photo grid — drifts at a deeper speed than text */}
-          <motion.div style={{ y: photoGridY }}>
-            <div className="reveal-right">
-              <div className="grid grid-cols-2 gap-3">
-                <div className="row-span-2 overflow-hidden rounded-sm group">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/Photo/Forum 2.jpg" alt="ADIF Forum" className="w-full h-full object-cover transition-transform duration-[600ms] group-hover:scale-[1.04]" />
-                </div>
-                <div className="aspect-square overflow-hidden rounded-sm group">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/Photo/Racing 1.jpg" alt="ADIF Racing Sponsorship" className="w-full h-full object-cover transition-transform duration-[600ms] group-hover:scale-[1.04]" />
-                </div>
-                <div className="aspect-square overflow-hidden rounded-sm group">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/Photo/Racing 2.jpg" alt="AIX Investment Group" className="w-full h-full object-cover transition-transform duration-[600ms] group-hover:scale-[1.04]" />
-                </div>
-              </div>
-            </div>
-          </motion.div>
 
         </div>
       </div>

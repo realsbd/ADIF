@@ -173,7 +173,7 @@ export default function Hero() {
           Bridging Visionary Ambition with Exceptional Investment Opportunities.
         </p>
 
-        <div
+        {/* <div
           className="hero-actions flex gap-4 justify-center flex-wrap transition-transform duration-75"
           style={{
             transform: isMobile ? 'none' : `translateY(${scrollProgress * 100}px)`,
@@ -199,7 +199,7 @@ export default function Hero() {
           >
             AIX Investment →
           </a>
-        </div>
+        </div> */}
       </div>
 
       {/* Scroll indicator */}

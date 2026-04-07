@@ -32,9 +32,9 @@ export default function CeoSection() {
       <div className="max-w-[1200px] mx-auto px-12 max-[900px]:px-6">
         <div className="grid grid-cols-2 max-[900px]:grid-cols-1 gap-20 max-[900px]:gap-12 items-center">
 
-          {/* Photo */}
+          {/* Photo — hidden on mobile (shown inline above signature instead) */}
           <div
-            className="ceo-photo reveal-left relative overflow-hidden rounded-sm"
+            className="ceo-photo reveal-left relative overflow-hidden rounded-sm order-1 max-[900px]:order-2 max-[900px]:hidden"
             style={{ aspectRatio: '4/5' }}
           >
             <motion.div className="w-full h-full" style={{ y: imageY, scale: 1.15 }}>
@@ -48,7 +48,7 @@ export default function CeoSection() {
           </div>
 
           {/* Text */}
-          <motion.div style={{ y: textY }}>
+          <motion.div style={{ y: textY }} className="order-2 max-[900px]:order-1">
             <div className="reveal-right">
               <span className="font-sans text-[11px] tracking-[0.3em] uppercase text-gold mb-4 block">
                 Leadership
@@ -122,6 +122,15 @@ export default function CeoSection() {
               </p>
 
               <div className="mt-9 pt-7 border-t border-black/[0.08]">
+                {/* CEO photo — mobile only, shown above the name */}
+                <div className="mb-5 w-full h-auto overflow-hidden border-2 border-gold min-[900px]:hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/Photo/CEO.jpg"
+                    alt="Alexander Oi"
+                    className="w-full h-full object-cover object-top"
+                  />
+                </div>
                 <div className="font-serif text-[22px] text-text-dark">Alexander Oi</div>
                 <div className="text-[12px] tracking-[0.15em] uppercase text-gold mt-1">CEO, ADIF GROUP</div>
               </div>
