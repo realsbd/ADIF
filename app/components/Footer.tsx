@@ -5,7 +5,7 @@ export default function Footer() {
         <div className="flex items-center justify-between flex-wrap gap-5 max-[900px]:flex-col max-[900px]:text-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/logo_adif.png"
+            src="/logo_adif.PNG"
             alt="ADIF GROUP"
             className="h-7 opacity-60"
             style={{ filter: 'brightness(0) invert(1)' }}

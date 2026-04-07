@@ -19,7 +19,7 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
       {/* Logo at top of mobile menu */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/logo_adif.png"
+        src="/logo_adif.PNG"
         alt="ADIF GROUP"
         className="h-14 mb-4"
       />
