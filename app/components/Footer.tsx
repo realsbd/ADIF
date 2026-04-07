@@ -3,18 +3,18 @@ export default function Footer() {
     <footer className="bg-blue-deep py-10 border-t border-white/[0.06]">
       <div className="max-w-[1200px] mx-auto px-12 max-[900px]:px-6">
         <div className="flex items-center justify-between flex-wrap gap-5 max-[900px]:flex-col max-[900px]:text-center">
+
+          {/* Logo — hidden on mobile */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/logo_adif.PNG"
             alt="ADIF GROUP"
             className="h-7 opacity-60"
             style={{ filter: 'brightness(0) invert(1)' }}
-            // increase size of the logo
           />
-          <p className="text-[12px] text-white/35 tracking-[0.05em]">
-            © 2026 ADIF GROUP. All Rights Reserved.
-          </p>
-          <div className="flex gap-7">
+
+          {/* Nav links — order-1 on mobile so they appear above copyright */}
+          <div className="flex flex-wrap justify-center gap-7 max-[900px]:order-1">
             {[['#philosophy','Philosophy'],['#services','Services'],['#alliance','Alliance'],['#contact','Contact']].map(([href, label]) => (
               <a
                 key={href}
@@ -25,6 +25,12 @@ export default function Footer() {
               </a>
             ))}
           </div>
+
+          {/* Copyright — order-2 on mobile so it appears below links */}
+          <p className="text-[12px] text-white/35 tracking-[0.05em] max-[900px]:order-2">
+            © 2026 ADIF GROUP. All Rights Reserved.
+          </p>
+
         </div>
       </div>
     </footer>
