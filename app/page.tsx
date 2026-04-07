@@ -1,5 +1,6 @@
 import Loader from '@/app/components/Loader';
 import Navbar from '@/app/components/Navbar';
+import HomeBodyClass from '@/app/components/HomeBodyClass';
 import Hero from '@/app/components/Hero';
 import StatsBar from '@/app/components/StatsBar';
 import Philosophy from '@/app/components/Philosophy';
@@ -13,6 +14,7 @@ import Footer from '@/app/components/Footer';
 export default function Home() {
   return (
     <>
+      <HomeBodyClass />
       <Loader />
       <Navbar />
       <Hero />

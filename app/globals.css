@@ -59,7 +59,7 @@
 }
 .hero-actions  { transform: translateY(20px); }
 .hero-scroll   { opacity: 0; }
-.nav-logo      { opacity: 0; }
+.home-page .nav-logo { opacity: 0; }
 
 /* Scroll reveal initial states */
 .reveal       { opacity: 0; transform: translateY(40px); }

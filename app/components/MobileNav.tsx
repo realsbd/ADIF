@@ -16,6 +16,14 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
       ].join(' ')}
       id="mobileNav"
     >
+      {/* Logo at top of mobile menu */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/logo_adif.png"
+        alt="ADIF GROUP"
+        className="h-14 mb-4"
+      />
+
       {[['#hero','Home'],['#philosophy','Philosophy'],['#services','Services'],['#alliance','Alliance'],['#contact','Contact']].map(([href,label]) => (
         <a
           key={href}

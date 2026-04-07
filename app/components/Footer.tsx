@@ -5,10 +5,11 @@ export default function Footer() {
         <div className="flex items-center justify-between flex-wrap gap-5 max-[900px]:flex-col max-[900px]:text-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/logo.avif"
+            src="/logo_adif.png"
             alt="ADIF GROUP"
             className="h-7 opacity-60"
             style={{ filter: 'brightness(0) invert(1)' }}
+            // increase size of the logo
           />
           <p className="text-[12px] text-white/35 tracking-[0.05em]">
             © 2026 ADIF GROUP. All Rights Reserved.

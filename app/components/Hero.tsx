@@ -78,10 +78,11 @@ export default function Hero() {
     <section
       ref={sectionRef}
       id="hero"
-      className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden"
+      className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-blue-deep"
       style={{
-        // Parallax: background-position shifts as the user scrolls
+        backgroundImage: 'url(/bk0006.png)',
         backgroundSize: 'cover',
+        backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
       }}
     >
@@ -128,7 +129,7 @@ export default function Hero() {
         <h1
           className="hero-title font-serif font-light text-white mb-5 transition-transform duration-75"
           style={{
-            fontSize: 'clamp(42px,6vw,76px)',
+            fontSize: 'clamp(28px,6vw,54px)',
             lineHeight: 1.1,
             transform: isMobile ? 'none' : `translateX(-${textTranslateX}vw)`,
           }}
@@ -139,7 +140,7 @@ export default function Hero() {
         <h1
           className="hero-title font-serif font-light text-white mb-5 transition-transform duration-75"
           style={{
-            fontSize: 'clamp(42px,6vw,76px)',
+            fontSize: 'clamp(28px,6vw,54px)',
             lineHeight: 1.1,
             transform: isMobile ? 'none' : `translateX(${textTranslateX}vw)`,
           }}
@@ -150,7 +151,7 @@ export default function Hero() {
         <h1
           className="hero-title font-serif font-light text-white mb-5 transition-transform duration-75"
           style={{
-            fontSize: 'clamp(42px,6vw,76px)',
+            fontSize: 'clamp(28px,6vw,54px)',
             lineHeight: 1.1,
             transform: isMobile
               ? 'none'
@@ -190,6 +191,14 @@ export default function Hero() {
           >
             Start a Conversation
           </a>
+          <a
+            href="https://www.aixinvestment.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block py-[14px] px-10 border border-gold text-gold text-[12px] tracking-[0.15em] uppercase no-underline rounded-sm transition-all duration-300 hover:bg-gold hover:text-blue-deep"
+          >
+            AIX Investment →
+          </a>
         </div>
       </div>
 
@@ -211,6 +220,10 @@ export default function Hero() {
           style={{
             opacity: scrollProgress >= 0.9 ? 1 : 0,
             pointerEvents: scrollProgress >= 0.9 ? 'auto' : 'none',
+            backgroundImage: 'url(/bk0006.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
           }}
         >
           <div className="absolute inset-0 bg-blue-deep/70" />

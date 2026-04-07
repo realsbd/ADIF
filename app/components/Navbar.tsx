@@ -7,6 +7,8 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled]     = useState(false);
 
+  const light = scrolled;
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener('scroll', onScroll);
@@ -25,28 +27,36 @@ export default function Navbar() {
         className={[
           'fixed top-0 left-0 right-0 z-[100] px-12 h-[72px] flex items-center justify-between',
           'transition-all duration-[400ms]',
-          scrolled
+          light
             ? 'bg-white/[0.92] backdrop-blur-[16px] shadow-[0_1px_0_rgba(0,0,0,0.07)]'
             : '',
         ].join(' ')}
       >
-        {/* Logo — single img, filter changes on scroll */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          className="nav-logo h-9 transition-all duration-[400ms]"
-          src={scrolled ? "/logo.avif" : "/logo_adif.png"}
-          alt="ADIF GROUP"
-        />
+        {/* Logo — links back to homepage */}
+        <a href="/" aria-label="ADIF GROUP — Home">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            className="nav-logo h-12 transition-all duration-[400ms]"
+            src={light ? '/logo.avif' : '/logo_adif.png'}
+            alt="ADIF GROUP"
+          />
+        </a>
 
         {/* Desktop links */}
         <ul className="hidden md:flex gap-9 list-none">
-          {[['#philosophy','Philosophy'],['#ceo','Leadership'],['#services','Services'],['#alliance','Alliance']].map(([href, label]) => (
+          {[
+            ['/#philosophy', 'Philosophy'],
+            ['/#ceo',        'Leadership'],
+            ['/#services',   'Services'],
+            ['/#alliance',   'Alliance'],
+            ['/blog',        'Insights'],
+          ].map(([href, label]) => (
             <li key={href}>
               <a
                 href={href}
                 className={[
                   'text-[13px] tracking-[0.08em] uppercase no-underline transition-colors duration-300',
-                  scrolled ? 'text-text-dark hover:text-blue-light' : 'text-white/85 hover:text-gold',
+                  light ? 'text-text-dark hover:text-blue-light' : 'text-white/85 hover:text-gold',
                 ].join(' ')}
               >
                 {label}
@@ -57,10 +67,10 @@ export default function Navbar() {
 
         {/* CTA */}
         <a
-          href="#contact"
+          href="/#contact"
           className={[
             'hidden md:inline-block text-[12px] tracking-[0.1em] uppercase py-[10px] px-6 rounded-sm transition-all duration-300 no-underline',
-            scrolled
+            light
               ? 'border border-blue-mid text-blue-mid hover:bg-blue-mid hover:text-white'
               : 'border border-white/50 text-white hover:bg-white/[0.12] hover:border-white',
           ].join(' ')}
@@ -74,9 +84,9 @@ export default function Navbar() {
           onClick={toggle}
           aria-label="Toggle menu"
         >
-          <span className={`block w-[22px] h-[1.5px] transition-all duration-300 ${scrolled ? 'bg-text-dark' : 'bg-white'}`} />
-          <span className={`block w-[22px] h-[1.5px] transition-all duration-300 ${scrolled ? 'bg-text-dark' : 'bg-white'}`} />
-          <span className={`block w-[22px] h-[1.5px] transition-all duration-300 ${scrolled ? 'bg-text-dark' : 'bg-white'}`} />
+          <span className={`block w-[22px] h-[1.5px] transition-all duration-300 ${light ? 'bg-text-dark' : 'bg-white'}`} />
+          <span className={`block w-[22px] h-[1.5px] transition-all duration-300 ${light ? 'bg-text-dark' : 'bg-white'}`} />
+          <span className={`block w-[22px] h-[1.5px] transition-all duration-300 ${light ? 'bg-text-dark' : 'bg-white'}`} />
         </button>
       </nav>
     </>
