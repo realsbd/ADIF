@@ -112,10 +112,6 @@ export default function Alliance() {
                 Together, we bring Swiss precision and Dubai&apos;s dynamic growth to the global market,
                 offering a level of security and performance that sets a new industry standard.
               </p>
-              <div className="mt-8 py-5 px-7 border border-gold/25 inline-block">
-                <p className="text-[12px] tracking-[0.1em] uppercase text-white/50">Headquarters</p>
-                <strong className="block font-serif text-[18px] font-normal text-white mt-1">Dubai · Zurich</strong>
-              </div>
 
             </div>
               <a

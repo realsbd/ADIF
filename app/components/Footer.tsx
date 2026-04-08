@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="bg-blue-deep py-10 border-t border-white/[0.06]">
+    <footer className="bg-blue-deep py-6 border-t border-white/[0.06]">
       <div className="max-w-[1200px] mx-auto px-12 max-[900px]:px-6">
         <div className="flex items-center justify-between flex-wrap gap-5 max-[900px]:flex-col max-[900px]:text-center">
 
@@ -9,7 +9,7 @@ export default function Footer() {
           <img
             src="/logo_adif.PNG"
             alt="ADIF GROUP"
-            className="h-7 opacity-60"
+            className="h-12 opacity-60"
             style={{ filter: 'brightness(0) invert(1)' }}
           />
 

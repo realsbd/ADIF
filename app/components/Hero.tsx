@@ -213,37 +213,6 @@ export default function Hero() {
         <div className="w-px h-12 bg-gradient-to-b from-gold/80 to-transparent animate-scroll-pulse" />
       </div>
 
-      {/* Expanded content area (desktop only) */}
-      {!isMobile && (
-        <div
-          className="absolute inset-0 flex items-center justify-center transition-opacity duration-500"
-          style={{
-            opacity: scrollProgress >= 0.9 ? 1 : 0,
-            pointerEvents: scrollProgress >= 0.9 ? 'auto' : 'none',
-            backgroundImage: 'url(/bk0006.png)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-          }}
-        >
-          <div className="absolute inset-0 bg-blue-deep/70" />
-
-          <div className="relative z-10 text-center">
-            <h2
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8"
-              style={{
-                transform: `translateX(${scrollProgress >= 0.9 ? 0 : 20}px)`,
-              }}
-            >
-              Welcome to ADIF
-            </h2>
-            <p className="text-xl text-white/70 max-w-2xl">
-              Your gateway to exceptional investment opportunities in Dubai and
-              beyond.
-            </p>
-          </div>
-        </div>
-      )}
     </section>
   );
 }
